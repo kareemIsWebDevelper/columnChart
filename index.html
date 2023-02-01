@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width" initial-scale="1.0">
+        <meta name="description" content="expense-chart-component-main">
+        <title>Expenses Status</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <link href="https://fonts.google.com/specimen/DM+Sans">
+        <style>
+
+            body {
+                display: grid;
+                place-items: center;
+                min-height: 100vh;
+                background-color: hsl(27, 66%, 92%);
+                font-family: 'Dm', sans-serif;
+            }
+
+            #container_0 {
+                background-color: hsl(10, 79%, 65%);
+                border-radius: 20px;
+                padding:5px;
+                max-height:15vh;
+                width: 400px;
+                margin-bottom:20px;
+            }
+            #container_1 {
+                background-color: white;
+                border-radius: 20px;
+                width: 400px;
+                min-height:300px;
+                padding-top:10px;
+                margin-left: 5px;
+            }
+            
+            img {
+                width:60px;
+                margin-bottom:5px;
+            }
+
+            #myDiv {
+                color: white;
+                margin-left:15px;
+                margin-right:200px;
+                display:inline-block;
+            }
+            #myDiv span {
+                color:hsl(27, 66%, 92%);
+            }
+
+            #modified {
+                display:flex;
+                align-items:flex-end;
+                text-align: end;
+                justify-content: space-between;
+                padding:0 10px 0 10px;
+            }
+
+            .p_opacity {
+                opacity:.5;
+                font-size:12px;
+            } 
+
+            #statistics {
+                display:flex;
+                align-items:flex-end;
+                justify-content:center;
+                margin-top:60px;
+            }
+
+
+            .alignment {
+                display:block;
+                margin-left:15px;
+                text-align:center;
+                display:grid;
+                place-items:center;
+                }
+
+            .column{
+                width:35px;
+                align-items: flex-end;
+                border-radius:5px;
+            }
+
+            #column_0 { background-color: hsl(10, 79%, 65%); height: 40px; position:relative;}
+            #column_1 { background-color: hsl(10, 79%, 65%); height: 60px; position:relative;}
+            #column_2 { background-color: hsl(186, 34%, 60%); height: 100px; position:relative;}
+            #column_3 { background-color: hsl(10, 79%, 65%); height: 55px; position:relative;}
+            #column_4 { background-color: hsl(10, 79%, 65%); height: 47px; position:relative;}
+            #column_5 { background-color: hsl(10, 79%, 65%); height: 80px; position:relative;}
+            #column_6 { background-color: hsl(10, 79%, 65%); height: 52px; position:relative;}
+            
+            #column_0, #column_1, #column_2, #column_3,
+            #column_4, #column_5,#column_6 :hover {cursor: pointer;}
+
+            #hover_1 {
+                color: white;
+                width: 50px;
+                height: 25px;
+                font-size: 15px;
+                margin-bottom: 170px;
+                text-align: center;
+                background-color: black;
+                border-radius:5px;
+                position:absolute;
+            }
+            #hover_2 {
+                color: white;
+                width: 50px;
+                height: 25px;
+                font-size: 15px;
+                margin-bottom: 125px;
+                text-align: center;
+                background-color: black;
+                border-radius:5px;
+                position:absolute;
+                justify-content: center;
+            }
+            hr {
+                width:90%;
+                opacity: .5;
+            }
+
+        </style>
+    </head>
+    <body>
+        <main>
+            <div id="container_0">
+                <div id="myDiv">
+                    <span><p id="para_0">My balance</p></span>
+                    <h2 style="margin-top: 3px;">$921.48</h2>
+                </div>
+                <img src="images/logo.svg" alt="error loading logo">
+            </div>
+            <div id="container_1">
+                <h2 style="margin-left: 30px;">Spending - Last 7 days</h2>
+                <div id="statistics">
+                    <div class="align">
+                        <div class="column" id="column_0"></div><p class="p_opacity">mon</p>
+                    </div>
+                    <div class="alignment">
+                        <div class="column" id="column_1"></div><p class="p_opacity">tue</p>
+                    </div>
+                    <div class="alignment">
+                        <div id="hover_1">$52.36</div>    
+                        <div class="column" id="column_2"></div><p class="p_opacity">wed</p>
+                    </div>
+                    <div class="alignment">
+                        <div id="hover_2">$31.7</div>
+                        <div class="column" id="column_3"></div><p class="p_opacity">thr</p>
+                    </div>
+                    <div class="alignment">
+                        <div class="column" id="column_4"></div><p class="p_opacity">fri</p>
+                    </div>
+                    <div class="alignment">
+                        <div class="column" id="column_5"></div><p class="p_opacity">sat</p>
+                    </div>
+                    <div class="alignment">
+                        <div class="column" id="column_6"></div><p class="p_opacity">sun</p>
+                    </div>
+                    
+                </div>
+                <hr>
+                <div id="modified">
+                    <div class="a">
+                        <p style="margin-top:20px; font-size:12px; text-align:left;" class="p_opacity">Total this month</p>
+                        <h1 style="font-size:30px;">$478.33</h1>
+                    </div>
+                    <div class="b">
+                        <p id="paragraph" style="font-size:15  px; font-weight:bold;">+2.4%</p>
+                        <p style="margin-bottom:30px;" class="p_opacity">from last month</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+
+            var myColumn2 = document.getElementById("column_2"),
+                myColumn3 = document.getElementById("column_3"),
+                show1 = document.getElementById("hover_1");
+                show2 = document.getElementById("hover_2");
+
+            window.onload = function (){
+                show1.style.visibility = "hidden";
+                show2.style.visibility = "hidden";
+            }
+
+            myColumn2.onmouseover = function (){
+                myColumn2.style.opacity = .5;
+                show1.style.visibility = "visible"
+                
+            }
+            myColumn2.onmouseout = function (){
+                myColumn2.style.opacity = "1";
+                show1.style.visibility = "hidden"
+            }
+            myColumn3.onmouseover = function (){
+                myColumn3.style.opacity = .5;
+                show2.style.visibility = "visible"
+            }
+            myColumn3.onmouseout = function (){
+                myColumn3.style.opacity = "1";
+                show2.style.visibility = "hidden"    
+            }
+
+        </script>
+    </body>
+</html>
